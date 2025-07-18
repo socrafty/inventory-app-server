@@ -1,14 +1,18 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const mysql = require("mysql2");
-require("dotenv").config();
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const mysql = require('mysql2');
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
 
-app.use(cors());
-app.use(express.json());
+app.use(cors());  // 반드시 CORS 허용
+app.use(bodyParser.json());
+app.use(express.static('public'));
 
 // 재고 초기화 함수
 const initializeInventory = () => {
@@ -26,22 +30,19 @@ const initializeInventory = () => {
 };
 
 // MySQL 연결 설정
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
+require('dotenv').config();
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,      
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  port: process.env.DB_PORT,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
+  port: process.env.DB_PORT 
 });
 
 // MySQL 연결
 db.connect((err) => {
   if (err) {
     console.error('MySQL connection error:', err);
-    process.exit(1);
   }
   console.log('Connected to MySQL database');
   
