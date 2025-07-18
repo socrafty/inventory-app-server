@@ -1,0 +1,8 @@
+CREATE DATABASE inventoryDB;
+USE inventoryDB;
+
+CREATE TABLE items (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255),
+  qty INT
+);

@@ -1,0 +1,7 @@
+{
+  "appId": "com.example.app",
+  "appName": "TKERP3",
+  "webDir": "www",
+  "url": "https://shiny-antelope-surf.trycloudflare.com/api/inventory",
+  "cleartext": true
+}

@@ -1,0 +1,37 @@
+서버 여는법
+1. VSCode의 터미널에 node server.js 입력
+
+Server is running on http://localhost:3000
+Connected to MySQL database
+Tables created or already exist
+Inventory initialized
+Inventory updated successfully
+
+이런식으로 출력되면 정상적으로 열림
+
+2. CMD
+먼저 https://ngrok.com/downloads/windows 에서 ngrok 다운
+https://dashboard.ngrok.com/get-started/your-authtoken에서 토큰번호 받기
+
+명령 프롬프트에서 ngrok 폴더로 이동
+cd C:\Users\hwnsy\TKinventory-app\ngrok-v3-stable-windows-amd64
+입력
+
+인증 토큰 등록
+(위에서 복사한 Auth Token을 아래 명령에 붙여 넣기)
+https://dashboard.ngrok.com/get-started/your-authtoken
+
+.\ngrok config add-authtoken <복사한 토큰>
+
+✅ 4단계: Ngrok로 터널 열기
+다시 cmd나 PowerShell 열고 아래 명령 실행:
+
+bash
+.\ngrok http 3000
+
+결과 예시:
+bash
+Forwarding                    http://abcd1234.ngrok.io -> http://localhost:3000
+Forwarding                    https://abcd1234.ngrok.io -> http://localhost:3000
+
+ngrok                                                                                                   (Ctrl+C to quit)                                                                                                                          Decouple policy and sensitive data with Secrets... now in developer preview: https://ngrok.com/r/secrets                                                                                                                                     Session Status                online                                                                                    Account                       nm23t5@gmail.com (Plan: Free)                                                             Version                       3.23.3                                                                                    Region                        Japan (jp)                                                                                WLatency                       41ms                                                                                      Web Interface                 http://127.0.0.1:4040                                                                     Forwarding                    https://3a3b228d34b7.ngrok-free.app -> http://localhost:3000                                                                                                                                                      Connections                   ttl     opn     rt1     rt5     p50     p90                                                                             0       0       0.00    0.00    0.00    0.00                                                                                                                                                                                                                                                                                                                                                                            

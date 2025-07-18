@@ -1,0 +1,68 @@
+✅ Capacitor로 HTML 앱을 모바일 앱으로 만드는 전체 절차 (총정리)
+🧱 1단계: 프로젝트 폴더 구조 준비
+arduino
+복사
+편집
+TKinventory-app/
+├── public/
+│   └── test4.html        ← 기존 HTML 앱
+├── www/
+│   └── index.html        ← 반드시 존재해야 함 (main entry)
+├── capacitor.config.json ← 필수 설정 파일
+├── package.json          ← Node.js 프로젝트 파일
+└── ...
+📁 www/index.html은 반드시 있어야 하며, capacitor.config.json의 webDir 값은 "www"로 설정되어야 합니다.
+⚙️ 2단계: Capacitor 설치 및 초기 설정
+터미널에서 실행:
+
+bash
+
+npm init -y
+npm install @capacitor/core @capacitor/cli
+npx cap init
+질문에 이렇게 대답하세요:
+
+App name: TK Inventory
+
+App ID: com.example.tkinventory
+
+Web directory: www
+
+🖨️ 3단계: HTML 파일 복사
+bash
+copy public\test4.html www\index.html
+또는 수동으로 www/index.html 파일 생성 및 기존 HTML 코드 복사.
+
+🤖 4단계: Android 프로젝트 생성
+bash
+
+npx cap add android
+Android용 네이티브 프로젝트가 android/ 폴더에 생성됩니다.
+
+🖨️ 5단계: 웹 코드 복사
+bash
+npx cap copy
+www/ 폴더의 index.html, JS, CSS 등이 Android 프로젝트로 복사됩니다.
+
+🧑‍💻 6단계: Android Studio에서 열기
+bash
+npx cap open android
+Android Studio가 열리면:
+
+프로젝트 열기 완료
+
+상단의 ▶️눌러 실행
+
+📌 추가 팁
+작업	명령어
+웹 코드만 다시 복사	npx cap copy
+웹 코드 + 플러그인 반영	npx cap sync
+Android 프로젝트 삭제 후 다시 생성	rd /s /q android && npx cap add android
+프로젝트 청소	npx cap update android (Capacitor 5 이상)
+
+✅ Capacitor 핵심 파일 요약
+파일	설명
+index.html	앱 시작점 (반드시 있어야 함)
+capacitor.config.json	Capacitor 설정 파일 (webDir = "www" 확인 필수)
+android/	Android 네이티브 코드
+www/	실제 웹 파일들 (HTML, JS, CSS 등)
